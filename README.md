@@ -3,73 +3,65 @@
 
 <p align="center">
 
-![Platform](https://img.shields.io/badge/Platform-STM32-blue)
-![Sensor](https://img.shields.io/badge/Sensor-ADXL355-green)
-![Language](https://img.shields.io/badge/C-Critical)
-![Python](https://img.shields.io/badge/Python-3.x-yellow)
-![Interface](https://img.shields.io/badge/Communication-SPI-red)
-![Status](https://img.shields.io/badge/Status-Completed-success)
+![Platform](https://img.shields.io/badge/Platform-STM32L053R8-blue)
+![Sensor](https://img.shields.io/badge/Sensor-ADXL355-success)
+![Language](https://img.shields.io/badge/Language-C%20%7C%20Python-orange)
+![Communication](https://img.shields.io/badge/SPI-4--Wire-red)
+![Dashboard](https://img.shields.io/badge/Dashboard-PyQt5-yellow)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 </p>
 
 ---
 
+<p align="center">
+<img src="Images/project_banner.png" width="100%">
+</p>
+
+---
+
 # Overview
 
-This project presents a **high-precision industrial tilt measurement system** developed using the **Analog Devices ADXL355 Ultra-Low Noise MEMS Accelerometer** and an **STM32 NUCLEO-L053R8 Microcontroller**.
+The **High-Precision Industrial Tilt Monitoring System** is a real-time embedded monitoring solution designed using the **Analog Devices ADXL355 Ultra-Low Noise MEMS Accelerometer** and the **STM32 NUCLEO-L053R8** development board.
 
-The system continuously measures the inclination of a structure with **sub-degree precision** by acquiring raw acceleration data from the ADXL355 over SPI, processing it on the STM32, and visualizing the measurements using a real-time industrial desktop dashboard developed in Python.
+The system continuously measures structural inclination by reading ultra-high-resolution acceleration data through the SPI interface, converting it into **tilt angles (Roll & Pitch)**, and transmitting the processed data to a **Python-based Industrial Monitoring Dashboard**.
 
-The project was completed as an **Industry Sponsored Project** under **TDCoB Pvt. Ltd.**
+The desktop dashboard provides professional visualization including fixed-scale graphs, live statistics, recording capability, dark/light themes, and industrial-grade monitoring features.
+
+This project was developed as an **Industry Sponsored Project** under **TDCoB Pvt. Ltd.**
 
 ---
 
 # Project Objectives
 
-- High precision tilt monitoring
+- High-Precision Tilt Measurement
 - Structural Health Monitoring (SHM)
-- Industrial machine alignment
-- Bridge and building inclination monitoring
-- Geotechnical monitoring
-- Research in MEMS-based precision sensing
-- Industrial dashboard development
+- Industrial Machine Alignment
+- Bridge Monitoring
+- Building Inclination Detection
+- Geotechnical Monitoring
+- MEMS Sensor Research
+- Real-Time Industrial Dashboard Development
 
 ---
 
-# Features
+# Key Features
 
-✔ Ultra-Low Noise ADXL355 Accelerometer
-
-✔ STM32 HAL Driver
-
-✔ SPI Communication
-
-✔ Real-Time UART Telemetry
-
-✔ Industrial Python Dashboard
-
-✔ Real-Time Graphs
-
-✔ 3D Orientation Visualization
-
-✔ FFT Frequency Analysis
-
-✔ Session Recording
-
-✔ Session Playback
-
-✔ Automatic Report Generation
-
-✔ Calibration Support
-
-✔ Digital Filtering
-
-✔ Noise Reduction
-
-✔ Temperature Compensation
-
-✔ High Accuracy Tilt Calculation
+- Ultra-Low Noise ADXL355 Accelerometer
+- STM32 HAL-Based Embedded Firmware
+- SPI Communication Interface
+- UART Data Streaming
+- Real-Time Tilt Angle Calculation
+- Industrial Python Dashboard
+- Fixed Scale Live Graphs
+- Roll & Pitch Measurement
+- Dark & Light Theme Support
+- CSV Data Recording
+- Session Export
+- Calibration Support
+- Digital Noise Filtering
+- High Accuracy Tilt Measurement
 
 ---
 
@@ -77,28 +69,24 @@ The project was completed as an **Industry Sponsored Project** under **TDCoB Pvt
 
 ```
 
-            +----------------------------+
-            |      ADXL355 Sensor        |
-            | 20-bit MEMS Accelerometer  |
-            +-------------+--------------+
-                          |
-                     SPI Interface
-                          |
-                          |
-            +-------------v--------------+
-            | STM32 NUCLEO-L053R8 MCU    |
-            | HAL Driver + Processing    |
-            +-------------+--------------+
-                          |
-                     UART (115200)
-                          |
-                          |
-            +-------------v--------------+
-            | Python Industrial Dashboard|
-            | Live Graphs + 3D + FFT     |
-            +-------------+--------------+
-                          |
-                   PDF Report Generator
+          +----------------------------+
+          |     ADXL355 Accelerometer  |
+          +-------------+--------------+
+                        |
+                  SPI Communication
+                        |
+          +-------------v--------------+
+          | STM32 NUCLEO-L053R8 MCU    |
+          | Firmware Processing        |
+          +-------------+--------------+
+                        |
+                  UART (115200 Baud)
+                        |
+          +-------------v--------------+
+          | Python Industrial Dashboard|
+          +-------------+--------------+
+                        |
+               CSV Export / Monitoring
 
 ```
 
@@ -107,34 +95,209 @@ The project was completed as an **Industry Sponsored Project** under **TDCoB Pvt
 # Hardware Components
 
 | Component | Description |
-|------------|------------|
-| STM32 NUCLEO-L053R8 | ARM Cortex-M0+ MCU |
-| ADXL355 Evaluation Board | Ultra-low noise MEMS accelerometer |
+|------------|-------------|
+| STM32 NUCLEO-L053R8 | ARM Cortex-M0+ Development Board |
+| ADXL355 Evaluation Board | 20-bit Ultra-Low Noise MEMS Accelerometer |
 | ST-Link | Programming & Debugging |
-| USB | Power + UART Communication |
+| USB Cable | Power & UART Communication |
 | PC | Industrial Dashboard |
 
 ---
 
-# Hardware Wiring
+# Hardware Wiring Diagram
 
-![Hardware Wiring](Images/circuit_diagram.png)
+<p align="center">
+<img src="Images/circuit_diagram.png" width="100%">
+</p>
 
-The complete SPI wiring diagram between the STM32 NUCLEO-L053R8 and the ADXL355 evaluation board is documented in the project report and wiring figure. :contentReference[oaicite:0]{index=0}
+**Figure 1:** SPI Connection between STM32 NUCLEO-L053R8 and ADXL355 Evaluation Board.
 
 ---
 
 # SPI Connection Table
 
-| STM32 | ADXL355 |
-|---------|----------|
-| PA4 | CS |
-| PA5 | SCLK |
-| PA6 | MISO |
-| PA7 | MOSI |
-| 3.3V | VDD |
-| 3.3V | VDDIO |
-| GND | GND |
+| STM32 Pin | ADXL355 Evaluation Board |
+|------------|--------------------------|
+| PA4 | P2 Pin 1 (CS) |
+| PA5 | P2 Pin 2 (SCLK) |
+| PA6 | P2 Pin 3 (MISO) |
+| PA7 | P2 Pin 4 (MOSI) |
+| 3.3V | P1 Pin 1 (VDDIO) |
+| 3.3V | P1 Pin 3 (VDD) |
+| GND | P1 Pin 5 (GND) |
+
+---
+
+# ADXL355 Header Details
+
+## P1 Header (Power)
+
+| Pin | Function |
+|------|----------|
+| P1 Pin 1 | VDDIO (3.3V) |
+| P1 Pin 2 | INT1 (Not Used) |
+| P1 Pin 3 | VDD (3.3V) |
+| P1 Pin 4 | INT2 (Not Used) |
+| P1 Pin 5 | GND |
+| P1 Pin 6 | DRDY (Optional) |
+
+---
+
+## P2 Header (SPI)
+
+| Pin | Function |
+|------|----------|
+| P2 Pin 1 | CS |
+| P2 Pin 2 | SCLK |
+| P2 Pin 3 | MISO |
+| P2 Pin 4 | MOSI |
+| P2 Pin 5 | Reserved |
+| P2 Pin 6 | Reserved |
+
+---
+
+# Dashboard Preview
+
+<p align="center">
+<img src="Images/dashboard.png" width="100%">
+</p>
+
+**Figure 2:** Real-Time Industrial Dashboard Interface (Dark Theme Mode) displaying live sensor monitoring, fixed-scale graphs, recording controls, communication status, and industrial visualization.
+
+---
+
+# Dashboard Features
+
+### Real-Time Monitoring
+
+- Live Roll & Pitch Measurement
+- Live Sensor Values
+- UART Communication
+- Automatic COM Port Detection
+- Fixed Scale Industrial Graphs
+- Live Statistics Panel
+
+---
+
+### Data Visualization
+
+- X-Axis Monitoring
+- Y-Axis Monitoring
+- Z-Axis Monitoring
+- Fixed Graph Scaling
+- High-Speed Rendering
+- Industrial UI Design
+
+---
+
+### Data Recording
+
+- CSV Recording
+- Export Recorded Data
+- Timestamp Logging
+- Sample Counter
+- Session Management
+
+---
+
+### User Interface
+
+- Industrial Dark Theme
+- Light Theme Support
+- Professional Layout
+- Easy Navigation
+- Responsive Interface
+
+---
+
+# Firmware Workflow
+
+```
+
+Power ON
+
+↓
+
+GPIO Initialization
+
+↓
+
+SPI Initialization
+
+↓
+
+UART Initialization
+
+↓
+
+ADXL355 Configuration
+
+↓
+
+Read 20-bit Raw Data
+
+↓
+
+Convert to Acceleration (g)
+
+↓
+
+Calculate Roll & Pitch
+
+↓
+
+UART Transmission
+
+↓
+
+Python Dashboard
+
+↓
+
+CSV Recording
+
+```
+
+---
+
+# UART Data Format
+
+```
+ID=AD,X=12345,Y=-4567,Z=256789
+```
+
+---
+
+# Tilt Angle Calculation
+
+### Raw Counts → Acceleration
+
+```
+Acceleration = Raw × Sensitivity
+```
+
+### Pitch
+
+```
+Pitch = atan2(X, √(Y² + Z²))
+```
+
+### Roll
+
+```
+Roll = atan2(Y, √(X² + Z²))
+```
+
+---
+
+# Noise Reduction Techniques
+
+- Offset Calibration
+- Scale Calibration
+- Moving Average Filter
+- Digital Low Pass Filtering
+- Sensor Noise Reduction
+- Calibration Compensation
 
 ---
 
@@ -144,17 +307,16 @@ The complete SPI wiring diagram between the STM32 NUCLEO-L053R8 and the ADXL355 
 
 - STM32CubeIDE
 - STM32 HAL Drivers
+- Embedded C
 - SPI Driver
 - UART Driver
 - GPIO Driver
-- ADXL355 Driver
 
 ---
 
 ## Desktop Dashboard
 
-Python Technologies
-
+- Python 3.x
 - PyQt5
 - PyQtGraph
 - NumPy
@@ -163,206 +325,64 @@ Python Technologies
 
 ---
 
-# Folder Structure
+# Project Structure
 
 ```
-
 Industrial-Tilt-Monitoring-System/
 
-│
-
-├── Firmware/
-
-│ ├── Core/
-
-│ ├── Drivers/
-
-│ ├── Inc/
-
-│ └── Src/
-
-│
-
+├── Core/
+├── Drivers/
 ├── Dashboard/
-
-│ ├── main.py
-
-│ ├── serial_reader.py
-
-│ ├── plotter.py
-
-│ ├── fft_analysis.py
-
-│ ├── gaugeview.py
-
-│ ├── tilt3d.py
-
-│ ├── report_generator.py
-
-│ └── requirements.txt
-
+│   ├── main.py
+│   ├── serial_reader.py
+│   ├── plotter.py
+│   ├── gaugeview.py
+│   ├── tilt3d.py
+│   ├── fft_analysis.py
+│   ├── report_generator.py
+│   └── requirements.txt
 │
-
 ├── Images/
-
-│ ├── circuit_diagram.png
-
-│ ├── dashboard.png
-
-│ ├── hardware.jpg
-
-│ └── graphs.png
-
+│   ├── project_banner.png
+│   ├── circuit_diagram.png
+│   ├── dashboard.png
+│   └── hardware_setup.jpg
 │
-
 ├── Documentation/
-
-│ └── Technical_Report.pdf
-
+│   └── Technical_Report.pdf
 │
-
-└── README.md
-
+├── Makefile
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-# Firmware Workflow
+# Installation
 
+Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/Industrial-Tilt-Monitoring-System-STM32-ADXL355.git
 ```
 
-Initialize MCU
+Navigate into the dashboard folder
 
-↓
-
-Configure GPIO
-
-↓
-
-Initialize SPI
-
-↓
-
-Initialize UART
-
-↓
-
-Reset ADXL355
-
-↓
-
-Configure Measurement Mode
-
-↓
-
-Read 20-bit Raw Data
-
-↓
-
-Convert Raw Counts
-
-↓
-
-Apply Calibration
-
-↓
-
-Apply Low Pass Filter
-
-↓
-
-Calculate Roll & Pitch
-
-↓
-
-Transmit UART Packet
-
-↓
-
-Python Dashboard
-
+```bash
+cd Dashboard
 ```
 
----
+Install dependencies
 
-# UART Packet Format
-
+```bash
+pip install -r requirements.txt
 ```
 
-ID=AD,X=12345,Y=-5678,Z=256000
+Run the dashboard
 
+```bash
+python main.py
 ```
-
----
-
-# Tilt Calculation
-
-Acceleration Conversion
-
-```
-
-Acceleration = Raw × 3.9 µg/LSB
-
-```
-
-Pitch
-
-```
-
-θx = atan2(X, √(Y² + Z²))
-
-```
-
-Roll
-
-```
-
-θy = atan2(Y, √(X² + Z²))
-
-```
-
----
-
-# Noise Reduction Techniques
-
-The firmware includes multiple filtering methods:
-
-- Offset Calibration
-- Scale Calibration
-- Temperature Compensation
-- Exponential Moving Average
-- Sample Averaging
-- Low Pass Filtering
-
-These techniques significantly reduce sensor noise and improve tilt accuracy. :contentReference[oaicite:1]{index=1}
-
----
-
-# Dashboard Features
-
-✔ Live Roll & Pitch
-
-✔ Live Acceleration
-
-✔ FFT Analysis
-
-✔ 3D PCB Rotation
-
-✔ Health Indicator
-
-✔ Industrial Gauges
-
-✔ Session Recording
-
-✔ Session Playback
-
-✔ PDF Report Generation
-
-✔ Dark Theme
-
-✔ Light Theme
-
-The report describes the dashboard architecture, including modules for real-time plotting, serial communication, FFT analysis, 3D visualization, configuration management, playback, notifications, and automated PDF reporting. :contentReference[oaicite:2]{index=2}
 
 ---
 
@@ -370,70 +390,58 @@ The report describes the dashboard architecture, including modules for real-time
 
 - Structural Health Monitoring
 - Bridge Monitoring
-- Building Monitoring
-- Machine Alignment
-- Robotics
+- Industrial Machine Alignment
+- Building Inclination Monitoring
 - Geotechnical Monitoring
-- Seismic Monitoring
+- Robotics
+- Research & Development
 - Industrial Automation
 
-These application areas are listed in the project report. :contentReference[oaicite:3]{index=3}
-
 ---
 
-# Performance
+# Future Enhancements
 
-| Parameter | Value |
-|------------|--------|
-| Sensor Resolution | 20-bit |
-| Interface | SPI |
-| Communication | UART |
-| Voltage | 3.3V |
-| MCU | STM32L053R8 |
-| Sensor | ADXL355 |
-| Accuracy | ±0.01° |
-| Output | Roll, Pitch |
-
-The report states that the system targets approximately ±0.01° tilt resolution after calibration and filtering. :contentReference[oaicite:4]{index=4} :contentReference[oaicite:5]{index=5}
-
----
-
-# Future Improvements
-
-- CAN Bus Support
-- RS485 Communication
-- LoRaWAN
-- MQTT Cloud Dashboard
-- Edge AI
-- TinyML
+- FFT Frequency Analysis
+- 3D PCB Orientation Viewer
 - SD Card Logging
-- WiFi Connectivity
-- OTA Firmware Updates
+- MQTT Cloud Dashboard
+- LoRa Communication
+- CAN Bus Interface
+- Wi-Fi Connectivity
+- TinyML Integration
+- Predictive Maintenance
 - Mobile Application
 
 ---
 
 # Documentation
 
-Complete project report available inside:
+A detailed technical report containing:
+
+- Hardware Design
+- Circuit Connections
+- Embedded Firmware
+- Dashboard Architecture
+- Mathematical Model
+- Calibration
+- Experimental Results
+- Applications
+
+is available in:
 
 ```
-
-Documentation/
-
+Documentation/Technical_Report.pdf
 ```
-
-The report covers hardware design, firmware, mathematical modeling, calibration, dashboard architecture, applications, and validation. :contentReference[oaicite:6]{index=6}
 
 ---
 
 # Developed By
 
-**Aakash Dabhade**
+## Aakash Dabhade
 
-Electronics & Telecommunication Engineering
+**B.Tech Electronics & Telecommunication Engineering**
 
-Vishwakarma Institute of Technology, Pune
+Vishwakarma Institute of Technology (VIT), Pune
 
 Industry Sponsored Project
 
@@ -443,11 +451,13 @@ TDCoB Pvt. Ltd.
 
 # Acknowledgements
 
+Special thanks to:
+
 - TDCoB Pvt. Ltd.
-- Vishwakarma Institute of Technology, Pune
-- STMicroelectronics
+- Vishwakarma Institute of Technology
 - Analog Devices Inc.
+- STMicroelectronics
 
 ---
 
-⭐ If you found this project useful, consider giving it a star!
+## ⭐ If you found this project useful, please consider giving it a Star!
